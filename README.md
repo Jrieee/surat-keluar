@@ -27,8 +27,8 @@ Jalankan seeder: php artisan db:seed
 npm install
 Jalankan Tailwind & Vite: npm run dev
 
-### 6️⃣ Menjalankan Laravel
+6️⃣ Menjalankan Laravel
 Buka terminal baru, lalu jalankan:  php artisan serve
 
-### 🔄 Update Project (Pull Terbaru)
+🔄 Update Project (Pull Terbaru)
 Untuk mengambil perubahan terbaru dari GitHub: git pull origin main
