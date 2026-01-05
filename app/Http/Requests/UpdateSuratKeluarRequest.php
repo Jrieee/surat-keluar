@@ -3,27 +3,26 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateSuratKeluarRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
-        return auth()->check() && 
-               (auth()->user()->isAdmin() || $this->suratKeluar->user_id === auth()->id());
+        return true; // authorization ditangani di policy/controller
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
+        $suratKeluar = $this->route('surat_keluar');
+
         return [
-            'nomor_surat' => 'required|string|unique:surat_keluars,nomor_surat,' . $this->suratKeluar->id . '|max:50',
+            'nomor_surat' => [
+                'required',
+                'string',
+                'max:50',
+                Rule::unique('surat_keluars', 'nomor_surat')->ignore($suratKeluar?->id),
+            ],
             'tanggal_surat' => 'required|date|date_format:Y-m-d',
             'tujuan' => 'required|string|max:100',
             'perihal' => 'required|string|max:255',
@@ -32,9 +31,6 @@ class UpdateSuratKeluarRequest extends FormRequest
         ];
     }
 
-    /**
-     * Get custom attributes for validator errors.
-     */
     public function attributes(): array
     {
         return [
@@ -47,9 +43,6 @@ class UpdateSuratKeluarRequest extends FormRequest
         ];
     }
 
-    /**
-     * Get custom error messages.
-     */
     public function messages(): array
     {
         return [
