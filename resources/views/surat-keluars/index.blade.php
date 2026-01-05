@@ -28,6 +28,7 @@
                 <table class="w-full">
                     <thead class="bg-gray-50 border-b border-gray-200">
                         <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">No</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Nomor Surat</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Perihal</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tujuan</th>
@@ -41,6 +42,9 @@
                     <tbody class="divide-y divide-gray-200">
                         @foreach($suratKeluars as $surat)
                             <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ $surat->nomor_urut }}
+                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <a href="{{ route('surat-keluars.show', $surat) }}" class="text-blue-600 hover:text-blue-900 font-medium">
                                         {{ $surat->nomor_surat }}

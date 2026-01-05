@@ -6,6 +6,7 @@ use App\Models\SuratKeluar;
 use App\Http\Requests\StoreSuratKeluarRequest;
 use App\Http\Requests\UpdateSuratKeluarRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class SuratKeluarController extends Controller
@@ -19,8 +20,8 @@ class SuratKeluarController extends Controller
         
         // Admin melihat semua surat, Staff hanya miliknya
         $suratKeluars = $user->isAdmin() 
-            ? SuratKeluar::with('user')->latest()->paginate(10)
-            : $user->suratKeluars()->latest()->paginate(10);
+            ? SuratKeluar::with('user')->orderBy('nomor_urut')->paginate(10)
+            : $user->suratKeluars()->orderBy('nomor_urut')->paginate(10);
 
         return view('surat-keluars.index', [
             'suratKeluars' => $suratKeluars,
@@ -43,6 +44,10 @@ class SuratKeluarController extends Controller
     {
         $validated = $request->validated();
         $validated['user_id'] = auth()->id();
+
+        // Auto-generate nomor_urut - surat baru selalu di nomor tertinggi (paling bawah)
+        $maxNumber = SuratKeluar::max('nomor_urut') ?? 0;
+        $validated['nomor_urut'] = $maxNumber + 1;
 
         // Handle file upload
         if ($request->hasFile('file_surat')) {
