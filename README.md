@@ -1,17 +1,25 @@
 ## 🚀 Instalasi & Menjalankan Project
 
-1️⃣ Clone Repository
+Ikuti langkah-langkah berikut untuk menjalankan project ini di komputer lokal.
+
+### 1️⃣ Clone & Setup Awal
+Jalankan perintah ini berurutan di terminal (Git Bash / CMD):
+
+```bash
+# Clone repository dan masuk ke folder
 git clone https://github.com/Jrieee/surat-keluar.git
 
-2️⃣ Install Dependency Backend
+# Install dependency backend
 composer install
 
-3️⃣ Konfigurasi Environment
-Salin file .env: cp .env.example .env
+# Setup file environment
+cp .env.example .env
+php artisan key:generate
+```
 
-Generate application key: php artisan key:generate
-
-Atur konfigurasi database pada file .env: 
+### 2️⃣ Konfigurasi Database
+Buka file .env lalu sesuaikan bagian database (pastikan database surat-app sudah dibuat di MySQL):
+```bash
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -19,16 +27,18 @@ DB_DATABASE=surat-app
 DB_USERNAME=root
 DB_PASSWORD=
 
-4️⃣ Migrasi Database
-Jalankan migration: php artisan migrate
-Jalankan seeder: php artisan db:seed
+#Setelah itu, jalankan migrasi dan seeder data:
+php artisan migrate --seed
+```
 
-5️⃣ Install Dependency Frontend
+### 3️⃣ Setup Frontend & Menjalankan Server
+Install dependency frontend dan jalankan server:
+```bash
+# Install package Node.js
 npm install
-Jalankan Tailwind & Vite: npm run dev
 
-6️⃣ Menjalankan Laravel
-Buka terminal baru, lalu jalankan:  php artisan serve
+# Jalankan Vite (biarkan terminal ini terbuka)
+npm run dev
 
-🔄 Update Project (Pull Terbaru)
-Untuk mengambil perubahan terbaru dari GitHub: git pull origin main
+# Buka terminal baru, lalu jalankan server Laravel:
+php artisan serve
