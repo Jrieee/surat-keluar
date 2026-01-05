@@ -3,17 +3,19 @@
 Ikuti langkah-langkah berikut untuk menjalankan project ini di komputer lokal.
 
 ### 1️⃣ Clone & Setup Awal
-Jalankan perintah ini berurutan di terminal (Git Bash / CMD):
+Jalankan perintah ini berurutan di terminal:
 
 ```bash
 # Clone repository dan masuk ke folder
 git clone https://github.com/Jrieee/surat-keluar.git
 
-# Install dependency backend
+# Install dependency backend di terminal Vscode
 composer install
 
 # Setup file environment
 cp .env.example .env
+
+# Setelah langkah diatas, lanjut ke langkah ini
 php artisan key:generate
 ```
 
