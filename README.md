@@ -1,12 +1,12 @@
 ## 🚀 Instalasi & Menjalankan Project
 
-### 1️⃣ Clone Repository
+1️⃣ Clone Repository
 git clone https://github.com/Jrieee/surat-keluar.git
 
-### 2️⃣ Install Dependency Backend
+2️⃣ Install Dependency Backend
 composer install
 
-### 3️⃣ Konfigurasi Environment
+3️⃣ Konfigurasi Environment
 Salin file .env: cp .env.example .env
 
 Generate application key: php artisan key:generate
@@ -19,11 +19,11 @@ DB_DATABASE=surat-app
 DB_USERNAME=root
 DB_PASSWORD=
 
-### 4️⃣ Migrasi Database
+4️⃣ Migrasi Database
 Jalankan migration: php artisan migrate
 Jalankan seeder: php artisan db:seed
 
-### 5️⃣ Install Dependency Frontend
+5️⃣ Install Dependency Frontend
 npm install
 Jalankan Tailwind & Vite: npm run dev
 
