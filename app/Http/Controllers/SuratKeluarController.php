@@ -17,15 +17,29 @@ class SuratKeluarController extends Controller
     public function index()
     {
         $user = auth()->user();
+        $search = request()->input('search');
         
         // Admin melihat semua surat, Staff hanya miliknya
-        $suratKeluars = $user->isAdmin() 
-            ? SuratKeluar::with('user')->orderBy('nomor_urut')->paginate(10)
-            : $user->suratKeluars()->orderBy('nomor_urut')->paginate(10);
+        $query = $user->isAdmin() 
+            ? SuratKeluar::with('user')
+            : $user->suratKeluars();
+
+        // Filter berdasarkan search
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('nomor_surat', 'like', '%' . $search . '%')
+                  ->orWhere('perihal', 'like', '%' . $search . '%')
+                  ->orWhere('tujuan', 'like', '%' . $search . '%')
+                  ->orWhere('alamat_penerima', 'like', '%' . $search . '%');
+            });
+        }
+
+        $suratKeluars = $query->orderBy('nomor_urut')->paginate(10);
 
         return view('surat-keluars.index', [
             'suratKeluars' => $suratKeluars,
             'isAdmin' => $user->isAdmin(),
+            'search' => $search,
         ]);
     }
 

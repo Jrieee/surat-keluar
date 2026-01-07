@@ -4,7 +4,7 @@
 @section('page-title', 'Daftar Surat Keluar')
 
 @section('content')
-    <div class="mb-6 flex items-center justify-between">
+    <div class="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
             <p class="text-gray-600">
                 @if($isAdmin)
@@ -22,8 +22,39 @@
         </a>
     </div>
 
+    <!-- Search Box -->
+    <div class="mb-6 bg-white rounded-lg shadow p-4">
+        <form method="GET" action="{{ route('surat-keluars.index') }}" class="flex gap-2">
+            <input 
+                type="text" 
+                name="search" 
+                value="{{ $search ?? '' }}"
+                placeholder="Cari nomor surat, perihal, tujuan, atau alamat..." 
+                class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+            <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                Cari
+            </button>
+            @if($search)
+                <a href="{{ route('surat-keluars.index') }}" class="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors font-medium">
+                    Reset
+                </a>
+            @endif
+        </form>
+    </div>
+
     <div class="bg-white rounded-lg shadow overflow-hidden">
         @if($suratKeluars->count() > 0)
+            @if($search)
+                <div class="px-6 py-3 bg-blue-50 border-b border-blue-200">
+                    <p class="text-sm text-blue-800">
+                        Hasil pencarian untuk "<strong>{{ $search }}</strong>" - Ditemukan <strong>{{ $suratKeluars->total() }}</strong> surat
+                    </p>
+                </div>
+            @endif
             <div class="overflow-x-auto">
                 <table class="w-full">
                     <thead class="bg-gray-50 border-b border-gray-200">
@@ -98,13 +129,20 @@
                 <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.414l4 4v10.172A2 2 0 0114 18H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H7a1 1 0 01-1-1v-6z"/>
                 </svg>
-                <p class="text-gray-500 mb-4">Tidak ada surat keluar</p>
-                <a href="{{ route('surat-keluars.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                    </svg>
-                    Buat Surat Pertama
-                </a>
+                @if($search)
+                    <p class="text-gray-500 mb-4">Tidak ada surat yang cocok dengan pencarian "<strong>{{ $search }}</strong>"</p>
+                    <a href="{{ route('surat-keluars.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
+                        ← Lihat Semua Surat
+                    </a>
+                @else
+                    <p class="text-gray-500 mb-4">Tidak ada surat keluar</p>
+                    <a href="{{ route('surat-keluars.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                        </svg>
+                        Buat Surat Pertama
+                    </a>
+                @endif
             </div>
         @endif
     </div>
