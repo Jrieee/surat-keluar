@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    if (auth()->check()) {
+    if (auth('web')->check()) {
         return redirect('/dashboard');
     }
     return redirect('/login');
