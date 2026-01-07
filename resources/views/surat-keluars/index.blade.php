@@ -36,6 +36,7 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Dibuat Oleh</th>
                             @endif
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Tanggal</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Dibuat Pada</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Aksi</th>
                         </tr>
                     </thead>
@@ -63,6 +64,9 @@
                                 @endif
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                     {{ $surat->tanggal_surat->format('d M Y') }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 font-medium created-time" data-timestamp="{{ $surat->created_at->timestamp }}">
+                                    {{ $surat->created_at->format('H:i') }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
                                     <a href="{{ route('surat-keluars.show', $surat) }}" class="text-blue-600 hover:text-blue-900 font-medium">
@@ -105,3 +109,30 @@
         @endif
     </div>
 @endsection
+
+<script>
+    const pageLoadTime = Math.floor(Date.now() / 1000); // Unix timestamp saat halaman load
+    
+    function formatTime(timestamp) {
+        const date = new Date(timestamp * 1000);
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        return `${hours}:${minutes}`;
+    }
+
+    function updateAllTimes() {
+        const currentServerTime = Math.floor(Date.now() / 1000);
+        
+        document.querySelectorAll('.created-time').forEach(element => {
+            const serverTimestamp = parseInt(element.getAttribute('data-timestamp'));
+            const adjustedTime = serverTimestamp + (currentServerTime - pageLoadTime);
+            element.textContent = formatTime(adjustedTime);
+        });
+    }
+
+    // Update immediately
+    updateAllTimes();
+    
+    // Update setiap detik
+    setInterval(updateAllTimes, 1000);
+</script>

@@ -62,13 +62,19 @@
                 <!-- Dibuat -->
                 <div>
                     <p class="text-gray-600 text-sm font-medium mb-1">Dibuat Pada</p>
-                    <p class="text-gray-900 font-semibold">{{ $suratKeluar->created_at->format('d F Y H:i') }}</p>
+                    <p class="text-gray-900 font-semibold">
+                        {{ $suratKeluar->created_at->format('d F Y') }} 
+                        <span class="text-blue-600" id="createdTime">{{ $suratKeluar->created_at->format('H:i') }}</span>
+                    </p>
                 </div>
 
                 <!-- Terakhir Diubah -->
                 <div>
                     <p class="text-gray-600 text-sm font-medium mb-1">Terakhir Diubah</p>
-                    <p class="text-gray-900 font-semibold">{{ $suratKeluar->updated_at->format('d F Y H:i') }}</p>
+                    <p class="text-gray-900 font-semibold">
+                        {{ $suratKeluar->updated_at->format('d F Y') }} 
+                        <span class="text-blue-600" id="updatedTime">{{ $suratKeluar->updated_at->format('H:i') }}</span>
+                    </p>
                 </div>
             </div>
 
@@ -119,4 +125,35 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Server timestamps saat halaman load
+        const serverCreatedTime = {{ $suratKeluar->created_at->timestamp }};
+        const serverUpdatedTime = {{ $suratKeluar->updated_at->timestamp }};
+        const pageLoadTime = Math.floor(Date.now() / 1000); // Unix timestamp saat halaman load
+        const timeDiff = pageLoadTime - serverCreatedTime; // Selisih waktu
+        
+        function formatTime(timestamp) {
+            const date = new Date(timestamp * 1000);
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            return `${hours}:${minutes}`;
+        }
+
+        function updateTimes() {
+            // Hitung waktu sekarang di server berdasarkan selisih
+            const currentServerTime = Math.floor(Date.now() / 1000);
+            const adjustedCreatedTime = serverCreatedTime + (currentServerTime - pageLoadTime);
+            const adjustedUpdatedTime = serverUpdatedTime + (currentServerTime - pageLoadTime);
+            
+            document.getElementById('createdTime').textContent = formatTime(adjustedCreatedTime);
+            document.getElementById('updatedTime').textContent = formatTime(adjustedUpdatedTime);
+        }
+
+        // Update immediately
+        updateTimes();
+        
+        // Update setiap detik
+        setInterval(updateTimes, 1000);
+    </script>
 @endsection
