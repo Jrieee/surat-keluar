@@ -4,7 +4,7 @@
 @section('page-title', 'Detail Surat Keluar')
 
 @section('content')
-    <div class="max-w-3xl mx-auto px-4 sm:px-0">
+    <div class="max-w-3xl mx-auto px-2 sm:px-4 lg:px-0">
         <!-- Header dengan Action Buttons -->
         <div class="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
             <div class="min-w-0">

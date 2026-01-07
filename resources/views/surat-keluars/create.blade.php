@@ -4,14 +4,14 @@
 @section('page-title', 'Buat Surat Keluar Baru')
 
 @section('content')
-    <div class="max-w-2xl mx-auto px-4 sm:px-0">
+    <div class="max-w-2xl mx-auto px-2 sm:px-4 lg:px-0">
         <div class="bg-white rounded-lg shadow">
-            <div class="p-4 sm:p-6 border-b border-gray-200">
+            <div class="p-3 sm:p-6 border-b border-gray-200">
                 <h2 class="text-lg sm:text-xl font-semibold text-gray-900">Form Surat Keluar Baru</h2>
                 <p class="text-gray-600 text-xs sm:text-sm mt-1">Isi semua data dengan lengkap dan benar</p>
             </div>
 
-            <form action="{{ route('surat-keluars.store') }}" method="POST" enctype="multipart/form-data" class="p-4 sm:p-6 space-y-6">
+            <form action="{{ route('surat-keluars.store') }}" method="POST" enctype="multipart/form-data" class="p-3 sm:p-6 space-y-4 sm:space-y-6">
                 @csrf
 
                 <!-- Nomor Surat -->

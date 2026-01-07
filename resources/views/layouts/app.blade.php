@@ -105,7 +105,7 @@
 
                 <!-- Main Content -->
                 <main class="flex-1 overflow-auto">
-                    <div class="p-6">
+                    <div class="p-3 sm:p-6">
                         <!-- Flash Messages -->
                         @if ($errors->any())
                             <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
