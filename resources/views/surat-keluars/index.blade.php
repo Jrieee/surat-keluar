@@ -124,7 +124,6 @@
                                 <th class="hidden lg:table-cell px-6 py-3 text-left font-medium text-gray-600 uppercase tracking-wider">Dibuat Oleh</th>
                             @endif
                             <th class="hidden sm:table-cell px-6 py-3 text-left font-medium text-gray-600 uppercase tracking-wider">Tanggal</th>
-                            <th class="hidden sm:table-cell px-6 py-3 text-left font-medium text-gray-600 uppercase tracking-wider">Dibuat Pada</th>
                             <th class="px-3 sm:px-6 py-2 sm:py-3 text-left font-medium text-gray-600 uppercase tracking-wider">Aksi</th>
                         </tr>
                     </thead>
@@ -152,9 +151,6 @@
                                 @endif
                                 <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-xs sm:text-sm text-gray-600">
                                     {{ $surat->tanggal_surat->format('d M Y') }}
-                                </td>
-                                <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap text-xs sm:text-sm text-blue-600 font-medium created-time" data-timestamp="{{ $surat->created_at->timestamp }}">
-                                    {{ $surat->created_at->format('H:i') }}
                                 </td>
                                 <td class="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm space-x-1 sm:space-x-2">
                                     <a href="{{ route('surat-keluars.show', $surat) }}" class="text-blue-600 hover:text-blue-900 font-medium">
