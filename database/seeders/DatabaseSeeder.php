@@ -24,19 +24,19 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
 
-        // Create Staff Users
-        $staff1 = User::factory()->create([
-            'name' => 'Staff Satu',
-            'email' => 'staff1@surat-app.test',
+        // Create Pegawai Users
+        $pegawai1 = User::factory()->create([
+            'name' => 'Pegawai Satu',
+            'email' => 'pegawai1@surat-app.test',
             'password' => bcrypt('password123'),
-            'role' => 'staff',
+            'role' => 'pegawai',
         ]);
 
-        $staff2 = User::factory()->create([
-            'name' => 'Staff Dua',
-            'email' => 'staff2@surat-app.test',
+        $pegawai2 = User::factory()->create([
+            'name' => 'Pegawai Dua',
+            'email' => 'pegawai2@surat-app.test',
             'password' => bcrypt('password123'),
-            'role' => 'staff',
+            'role' => 'pegawai',
         ]);
 
         // Create Sample Surat Keluars
@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
                 'tujuan' => 'PT. ABC Indonesia',
                 'perihal' => 'Permintaan Penawaran Harga',
                 'alamat_penerima' => 'Jl. Merdeka No. 123, Jakarta Pusat 12345',
-                'user_id' => $staff1->id,
+                'user_id' => $pegawai1->id,
             ],
             [
                 'nomor_surat' => '002/SK/2025',
@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
                 'tujuan' => 'CV. Maju Jaya',
                 'perihal' => 'Konfirmasi Pesanan',
                 'alamat_penerima' => 'Jl. Sudirman No. 456, Jakarta Selatan 12789',
-                'user_id' => $staff2->id,
+                'user_id' => $pegawai2->id,
             ],
             [
                 'nomor_surat' => '003/SK/2025',
@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
                 'tujuan' => 'PT. Sejahtera Makmur',
                 'perihal' => 'Undangan Meeting Bisnis',
                 'alamat_penerima' => 'Jl. Gatot Subroto No. 789, Jakarta Barat 13456',
-                'user_id' => $staff1->id,
+                'user_id' => $pegawai1->id,
             ],
         ];
 

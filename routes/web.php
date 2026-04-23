@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    // Surat Keluar Routes (Admin & Staff)
+    // Surat Keluar Routes (Admin & Pegawai)
     Route::resource('surat-keluars', SuratKeluarController::class);
     Route::get('surat-keluars/{suratKeluar}/download', [SuratKeluarController::class, 'download'])->name('surat-keluars.download');
     

@@ -20,7 +20,7 @@ class SuratKeluarPolicy
      */
     public function create(User $user): bool
     {
-        return true; // Both admin and staff can create
+        return $user->isAdmin(); // Only admin can create
     }
 
     /**
@@ -28,7 +28,7 @@ class SuratKeluarPolicy
      */
     public function update(User $user, SuratKeluar $suratKeluar): bool
     {
-        return $user->isAdmin() || $user->id === $suratKeluar->user_id;
+        return $user->isAdmin(); // Only admin can update
     }
 
     /**
@@ -36,6 +36,6 @@ class SuratKeluarPolicy
      */
     public function delete(User $user, SuratKeluar $suratKeluar): bool
     {
-        return $user->isAdmin() || $user->id === $suratKeluar->user_id;
+        return $user->isAdmin(); // Only admin can delete
     }
 }

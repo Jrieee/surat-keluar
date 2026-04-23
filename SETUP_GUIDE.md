@@ -3,18 +3,18 @@
 ## ✅ Fitur Utama
 
 ### 1. Database Schema
-- ✅ Users Table dengan kolom `role` (enum: 'admin', 'staff')
+- ✅ Users Table dengan kolom `role` (enum: 'admin', 'pegawai')
 - ✅ SuratKeluars Table dengan kolom lengkap
 - ✅ Relationships & Indexes
 
 ### 2. Hak Akses (Permissions)
 - ✅ Admin: CRUD Surat Keluar + Manajemen User (tidak bisa self-delete)
-- ✅ Staff: CRUD Surat Keluar sendiri + lihat dashboard sendiri
+- ✅ Pegawai: Hanya bisa lihat surat keluar (tidak bisa tambah, edit, atau hapus) + download PDF
 - ✅ Policies & Middleware untuk authorization
 
 ### 3. Layout & UI
 - ✅ Sidebar Modern (Fixed Left, Responsive)
-- ✅ Dashboard berbeda untuk Admin & Staff
+- ✅ Dashboard berbeda untuk Admin & Pegawai
 - ✅ Menu dinamis berdasarkan role
 
 ### 4. Controllers
@@ -25,7 +25,7 @@
 ### 5. Views
 - ✅ Layout app.blade.php (sidebar modern)
 - ✅ Dashboard Admin (stats, recent surat, user list)
-- ✅ Dashboard Staff (stats, recent surat sendiri)
+- ✅ Dashboard Pegawai (stats, surat keluar)
 - ✅ Surat Keluar CRUD (index, create, edit, show)
 - ✅ User Management (index, show)
 
@@ -67,15 +67,15 @@ http://localhost:8000
 - **Password**: password123
 - **Role**: Admin
 
-### Staff Account 1
-- **Email**: staff1@surat-app.test
+### Pegawai Account 1
+- **Email**: pegawai1@surat-app.test
 - **Password**: password123
-- **Role**: Staff
+- **Role**: Pegawai
 
-### Staff Account 2
-- **Email**: staff2@surat-app.test
+### Pegawai Account 2
+- **Email**: pegawai2@surat-app.test
 - **Password**: password123
-- **Role**: Staff
+- **Role**: Pegawai
 
 ---
 
@@ -83,24 +83,24 @@ http://localhost:8000
 
 ### Dashboard
 - [ ] Login dengan Admin → Dashboard Admin muncul
-- [ ] Login dengan Staff → Dashboard Staff muncul
-- [ ] Admin melihat: Total Surat, Total Staff, Recent Surats, User List
-- [ ] Staff melihat: Total Surat Saya, Recent Surat Saya
+- [ ] Login dengan Pegawai → Dashboard Pegawai muncul
+- [ ] Admin melihat: Total Surat, Total Pegawai, Recent Surats, User List
+- [ ] Pegawai melihat: Total Surat Keluar, Recent Surats
 
 ### Surat Keluar - CRUD
-- [ ] Create: Buat surat keluar baru (dengan file PDF)
-- [ ] Read: Lihat detail surat keluar
-- [ ] Update: Edit surat keluar, ganti file
-- [ ] Delete: Hapus surat keluar
-- [ ] Download: Download file surat
-- [ ] Admin bisa lihat semua surat, Staff hanya miliknya
+- [ ] Create: Admin bisa buat surat keluar baru (dengan file PDF)
+- [ ] Read: Pegawai bisa lihat detail surat keluar
+- [ ] Update: Admin bisa edit surat keluar, ganti file
+- [ ] Delete: Admin bisa hapus surat keluar
+- [ ] Download: Admin & Pegawai bisa download file surat
+- [ ] Admin bisa lihat semua surat, Pegawai hanya bisa lihat saja
 
 ### User Management (Admin Only)
 - [ ] Admin bisa lihat daftar user
 - [ ] Admin bisa lihat detail user + statistik surat
-- [ ] Admin bisa hapus user (staff)
+- [ ] Admin bisa hapus user (pegawai)
 - [ ] Admin tidak bisa hapus dirinya sendiri (error message)
-- [ ] Staff tidak bisa akses user management page
+- [ ] Pegawai tidak bisa akses user management page
 
 ### Sidebar & Navigation
 - [ ] Sidebar responsive (collapse di mobile)
@@ -113,11 +113,14 @@ http://localhost:8000
 - [ ] File upload hanya PDF, max 5MB
 - [ ] Flash messages (success, error) muncul
 - [ ] Error validation messages ditampilkan
+- [ ] Pegawai tidak bisa akses form create/edit (403 Forbidden)
+- [ ] Pegawai tidak bisa submit request edit/delete
 
 ### Authorization
-- [ ] Staff tidak bisa akses route admin
-- [ ] Staff tidak bisa edit/delete surat staff lain
-- [ ] Admin bisa edit/delete surat siapa saja
+- [ ] Pegawai tidak bisa akses route admin
+- [ ] Pegawai tidak bisa create/edit/delete surat
+- [ ] Admin bisa create/edit/delete surat siapa saja
+- [ ] Pegawai bisa download file surat yang ada
 
 ---
 

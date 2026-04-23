@@ -10,13 +10,15 @@
                 @if($isAdmin)
                     Menampilkan semua surat keluar
                 @else
-                    Menampilkan surat keluar Anda
+                    Menampilkan surat keluar
                 @endif
             </p>
         </div>
-        <a href="{{ route('surat-keluars.create') }}" class="inline-flex items-center justify-center px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-xs sm:text-sm w-full sm:w-auto">
-            Buat Surat Baru
-        </a>
+        @if($isAdmin)
+            <a href="{{ route('surat-keluars.create') }}" class="inline-flex items-center justify-center px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-xs sm:text-sm w-full sm:w-auto">
+                Buat Surat Baru
+            </a>
+        @endif
     </div>
 
     <!-- SEARCH -->
@@ -109,15 +111,17 @@
 
                                 <td class="px-6 py-4 space-x-2">
                                     <a href="{{ route('surat-keluars.show', $surat) }}" class="text-blue-600">Lihat</a>
-                                    <a href="{{ route('surat-keluars.edit', $surat) }}" class="text-yellow-600">Edit</a>
+                                    @if($isAdmin)
+                                        <a href="{{ route('surat-keluars.edit', $surat) }}" class="text-yellow-600">Edit</a>
 
-                                    <form action="{{ route('surat-keluars.destroy', $surat) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button onclick="return confirm('Yakin hapus?')" class="text-red-600">
-                                            Hapus
-                                        </button>
-                                    </form>
+                                        <form action="{{ route('surat-keluars.destroy', $surat) }}" method="POST" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button onclick="return confirm('Yakin hapus?')" class="text-red-600">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    @endif
                                 </td>
 
                             </tr>

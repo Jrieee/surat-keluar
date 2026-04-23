@@ -15,22 +15,22 @@ class DashboardController extends Controller
         if ($user->isAdmin()) {
             // Dashboard Admin
             $totalSurat = SuratKeluar::count();
-            $totalStaff = User::where('role', 'staff')->count();
+            $totalPegawai = User::where('role', 'pegawai')->count();
             $recentSurats = SuratKeluar::latest()->take(5)->get();
             $allUsers = User::all();
 
             return view('dashboard.admin', [
                 'totalSurat' => $totalSurat,
-                'totalStaff' => $totalStaff,
+                'totalPegawai' => $totalPegawai,
                 'recentSurats' => $recentSurats,
                 'allUsers' => $allUsers,
             ]);
         } else {
-            // Dashboard Staff
+            // Dashboard Pegawai
             $recentSurats = $user->suratKeluars()->latest()->take(5)->get();
             $totalSuratUser = $user->suratKeluars()->count();
 
-            return view('dashboard.staff', [
+            return view('dashboard.pegawai', [
                 'recentSurats' => $recentSurats,
                 'totalSuratUser' => $totalSuratUser,
             ]);

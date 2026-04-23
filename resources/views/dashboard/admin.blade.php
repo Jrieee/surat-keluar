@@ -19,12 +19,12 @@
             </div>
         </div>
 
-        <!-- Total Staff -->
+        <!-- Total Pegawai -->
         <div class="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-gray-500 text-sm font-medium">Total Staff</p>
-                    <p class="text-3xl font-bold text-gray-900 mt-2">{{ $totalStaff }}</p>
+                    <p class="text-gray-500 text-sm font-medium">Total Pegawai</p>
+                    <p class="text-3xl font-bold text-gray-900 mt-2">{{ $totalPegawai }}</p>
                 </div>
                 <svg class="w-12 h-12 text-green-100" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10.5 1.5H3.75A2.25 2.25 0 001.5 3.75v12.5A2.25 2.25 0 003.75 18.5h12.5a2.25 2.25 0 002.25-2.25V9.5M6.5 6.5a2 2 0 110-4 2 2 0 010 4zM1.5 16.5s0-4 4.5-4 4.5 4 4.5 4M13 1.5v6m3-3h-6"/>

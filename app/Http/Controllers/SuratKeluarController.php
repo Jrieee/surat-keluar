@@ -19,7 +19,7 @@ class SuratKeluarController extends Controller
         $user = auth()->user();
         $search = request()->input('search');
         
-        // Admin melihat semua surat, Staff hanya miliknya
+        // Admin melihat semua surat, Pegawai hanya bisa lihat
         $query = $user->isAdmin() 
             ? SuratKeluar::with('user')
             : $user->suratKeluars();

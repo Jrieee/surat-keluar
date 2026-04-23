@@ -64,10 +64,10 @@ class User extends Authenticatable
     }
 
     /**
-     * Check if user is staff
+     * Check if user is pegawai
      */
-    public function isStaff(): bool
+    public function isPegawai(): bool
     {
-        return $this->role === 'staff';
+        return $this->role === 'pegawai';
     }
 }

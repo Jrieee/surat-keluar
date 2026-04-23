@@ -11,24 +11,26 @@
                 <h1 class="text-base sm:text-2xl font-bold text-gray-900 truncate">{{ $suratKeluar->nomor_surat }}</h1>
                 <p class="text-gray-600 text-xs sm:text-sm mt-1">Dibuat oleh: <span class="font-medium">{{ $suratKeluar->user->name }}</span></p>
             </div>
-            <div class="flex flex-col xs:flex-row gap-2 w-full sm:w-auto">
-                <a href="{{ route('surat-keluars.edit', $suratKeluar) }}" class="inline-flex items-center justify-center px-3 sm:px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors text-xs sm:text-sm font-medium w-full sm:w-auto">
-                    <svg class="w-4 sm:w-5 h-4 sm:h-5 mr-1 sm:mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                    </svg>
-                    <span class="hidden xs:inline">Edit</span>
-                </a>
-                <form action="{{ route('surat-keluars.destroy', $suratKeluar) }}" method="POST" style="display: inline; width: 100%; margin: 0;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="inline-flex items-center justify-center px-3 sm:px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors w-full text-xs sm:text-sm font-medium" onclick="return confirm('Yakin hapus surat ini?')">
-                        <svg class="w-4 sm:w-5 h-4 sm:h-5 mr-1 sm:mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
+            @if(auth()->user()->isAdmin())
+                <div class="flex flex-col xs:flex-row gap-2 w-full sm:w-auto">
+                    <a href="{{ route('surat-keluars.edit', $suratKeluar) }}" class="inline-flex items-center justify-center px-3 sm:px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors text-xs sm:text-sm font-medium w-full sm:w-auto">
+                        <svg class="w-4 sm:w-5 h-4 sm:h-5 mr-1 sm:mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                         </svg>
-                        <span class="hidden xs:inline">Hapus</span>
-                    </button>
-                </form>
-            </div>
+                        <span class="hidden xs:inline">Edit</span>
+                    </a>
+                    <form action="{{ route('surat-keluars.destroy', $suratKeluar) }}" method="POST" style="display: inline; width: 100%; margin: 0;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="inline-flex items-center justify-center px-3 sm:px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors w-full text-xs sm:text-sm font-medium" onclick="return confirm('Yakin hapus surat ini?')">
+                            <svg class="w-4 sm:w-5 h-4 sm:h-5 mr-1 sm:mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="hidden xs:inline">Hapus</span>
+                        </button>
+                    </form>
+                </div>
+            @endif
         </div>
 
         <!-- Detail Card -->

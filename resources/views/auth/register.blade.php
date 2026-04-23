@@ -63,14 +63,6 @@
                               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
                               transition">
 
-                <!-- Email -->
-                <input type="email" name="email" placeholder="Email" required
-                       class="w-full h-14 px-5 rounded-2xl
-                              border border-gray-300
-                              text-gray-700 placeholder-gray-400
-                              focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                              transition">
-
                 <!-- Password -->
                 <div class="relative">
                     <input id="password" type="password" name="password" placeholder="Password" required
@@ -108,30 +100,7 @@
                                text-white font-semibold rounded-full transition">
                     Daftar
                 </button>
-
-                <!-- Divider -->
-                <div class="flex items-center my-6">
-                    <div class="flex-1 h-px bg-gray-300"></div>
-                    <span class="px-4 text-sm text-gray-500">Atau Daftar Dengan</span>
-                    <div class="flex-1 h-px bg-gray-300"></div>
-                </div>
-
-                <!-- Google -->
-                <button type="button"
-                        class="w-full h-14 rounded-full border border-gray-300
-                               flex items-center justify-center gap-3
-                               hover:bg-gray-50 transition">
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="h-5">
-                    <span class="font-medium text-gray-700">Google</span>
-                </button>
             </form>
-
-            <p class="text-center text-sm text-gray-600 mt-8">
-                Sudah punya akun?
-                <a href="{{ route('login') }}" class="text-blue-600 font-semibold">
-                    Masuk di sini
-                </a>
-            </p>
         </div>
     </div>
 </div>

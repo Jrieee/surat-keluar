@@ -138,8 +138,8 @@ FILESYSTEM_DISK=public
 | Account | Email | Password |
 |---------|-------|----------|
 | Admin | admin@surat-app.test | password123 |
-| Staff 1 | staff1@surat-app.test | password123 |
-| Staff 2 | staff2@surat-app.test | password123 |
+| Pegawai 1 | pegawai1@surat-app.test | password123 |
+| Pegawai 2 | pegawai2@surat-app.test | password123 |
 
 ---
 
