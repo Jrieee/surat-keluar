@@ -76,13 +76,21 @@
 
                     <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 sm:p-6 text-center cursor-pointer hover:border-blue-500 transition-colors" id="drop-zone">
                         <input type="file" id="file_surat" name="file_surat" accept=".pdf" class="hidden">
-                        <svg class="w-8 sm:w-12 h-8 sm:h-12 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                        </svg>
-                        <p class="text-gray-700 font-medium text-xs sm:text-base">Klik atau drag file PDF ke sini untuk mengubah</p>
-                        <p class="text-gray-500 text-xs sm:text-sm mt-1">Biarkan kosong jika tidak ingin mengubah file</p>
+                        <div id="drop-zone-content">
+                            <svg class="w-8 sm:w-12 h-8 sm:h-12 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                            </svg>
+                            <p class="text-gray-700 font-medium text-xs sm:text-base">Klik atau drag file PDF ke sini untuk mengubah</p>
+                            <p class="text-gray-500 text-xs sm:text-sm mt-1">Biarkan kosong jika tidak ingin mengubah file</p>
+                        </div>
+                        <div id="file-selected-content" class="hidden flex-col items-center justify-center">
+                            <svg class="w-8 sm:w-12 h-8 sm:h-12 text-green-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <p class="text-green-600 font-medium text-xs sm:text-base" id="file-name-display"></p>
+                            <p class="text-gray-500 text-xs mt-1">Klik atau drag file lain untuk mengganti</p>
+                        </div>
                     </div>
-                    <div id="file-name" class="mt-2 text-xs sm:text-sm text-green-600 hidden"></div>
                     @error('file_surat')
                         <p class="text-red-500 text-xs sm:text-sm mt-1">{{ $message }}</p>
                     @enderror
@@ -107,7 +115,9 @@
     <script>
         const dropZone = document.getElementById('drop-zone');
         const fileInput = document.getElementById('file_surat');
-        const fileName = document.getElementById('file-name');
+        const dropZoneContent = document.getElementById('drop-zone-content');
+        const fileSelectedContent = document.getElementById('file-selected-content');
+        const fileNameDisplay = document.getElementById('file-name-display');
 
         dropZone.addEventListener('click', () => fileInput.click());
         dropZone.addEventListener('dragover', (e) => {
@@ -128,10 +138,14 @@
         function updateFileName() {
             if (fileInput.files.length > 0) {
                 const file = fileInput.files[0];
-                fileName.textContent = '✓ File baru dipilih: ' + file.name;
-                fileName.classList.remove('hidden');
+                fileNameDisplay.textContent = file.name;
+                dropZoneContent.classList.add('hidden');
+                fileSelectedContent.classList.remove('hidden');
+                fileSelectedContent.classList.add('flex');
             } else {
-                fileName.classList.add('hidden');
+                dropZoneContent.classList.remove('hidden');
+                fileSelectedContent.classList.add('hidden');
+                fileSelectedContent.classList.remove('flex');
             }
         }
     </script>

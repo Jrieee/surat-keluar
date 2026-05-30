@@ -26,12 +26,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Change back to 'staff'
+        // Revert role values from 'pegawai' to 'staff' FIRST
+        DB::table('users')->where('role', 'pegawai')->update(['role' => 'staff']);
+
+        // Then change back to 'staff'
         Schema::table('users', function (Blueprint $table) {
             $table->enum('role', ['admin', 'staff'])->change();
         });
-
-        // Revert role values from 'pegawai' to 'staff'
-        DB::table('users')->where('role', 'pegawai')->update(['role' => 'staff']);
     }
 };

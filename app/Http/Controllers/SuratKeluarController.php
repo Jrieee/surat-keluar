@@ -19,10 +19,9 @@ class SuratKeluarController extends Controller
         $user = auth()->user();
         $search = request()->input('search');
         
-        // Admin melihat semua surat, Pegawai hanya bisa lihat
-        $query = $user->isAdmin() 
-            ? SuratKeluar::with('user')
-            : $user->suratKeluars();
+        // Semua user (Admin & Pegawai) bisa lihat semua surat
+        // Tapi hanya Admin yang bisa edit/delete
+        $query = SuratKeluar::with('user');
 
         // Filter berdasarkan search
         if ($search) {

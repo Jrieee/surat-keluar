@@ -27,12 +27,11 @@ class DashboardController extends Controller
             ]);
         } else {
             // Dashboard Pegawai
-            $recentSurats = $user->suratKeluars()->latest()->take(5)->get();
-            $totalSuratUser = $user->suratKeluars()->count();
+            // Sekarang pegawai bisa lihat SEMUA surat
+            $totalSurat = SuratKeluar::count();
 
             return view('dashboard.pegawai', [
-                'recentSurats' => $recentSurats,
-                'totalSuratUser' => $totalSuratUser,
+                'totalSurat' => $totalSurat,
             ]);
         }
     }

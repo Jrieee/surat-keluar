@@ -63,6 +63,14 @@
                               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
                               transition">
 
+                <!-- Username -->
+                <input type="text" name="username" placeholder="Username" required
+                       class="w-full h-14 px-5 rounded-2xl
+                              border border-gray-300
+                              text-gray-700 placeholder-gray-400
+                              focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                              transition">
+
                 <!-- Password -->
                 <div class="relative">
                     <input id="password" type="password" name="password" placeholder="Password" required

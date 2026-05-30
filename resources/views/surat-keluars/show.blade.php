@@ -92,22 +92,21 @@
             @if($suratKeluar->file_surat)
                 <div class="p-4 sm:p-6 bg-blue-50 border-b border-blue-200">
                     <p class="text-gray-600 text-xs sm:text-sm font-medium mb-3">File Surat</p>
-                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 sm:p-4 bg-white rounded-lg border border-blue-200 gap-3">
-                        <div class="flex items-center space-x-2 sm:space-x-3 min-w-0">
-                            <svg class="w-6 sm:w-8 h-6 sm:h-8 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.414l4 4v10.172A2 2 0 0114 18H6a2 2 0 01-2-2V4z"/>
-                            </svg>
-                            <div class="min-w-0">
-                                <p class="font-medium text-gray-900 text-xs sm:text-sm truncate">{{ basename($suratKeluar->file_surat) }}</p>
-                                <p class="text-xs sm:text-sm text-gray-500">PDF Document</p>
+                    <div class="mb-4">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 sm:p-4 bg-white rounded-lg border border-blue-200 gap-3 mb-4">
+                            <div class="flex items-center space-x-2 sm:space-x-3 min-w-0">
+                                <svg class="w-6 sm:w-8 h-6 sm:h-8 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.414l4 4v10.172A2 2 0 0114 18H6a2 2 0 01-2-2V4z"/>
+                                </svg>
+                                <div class="min-w-0">
+                                    <p class="font-medium text-gray-900 text-xs sm:text-sm truncate">{{ basename($suratKeluar->file_surat) }}</p>
+                                    <p class="text-xs sm:text-sm text-gray-500">PDF Document</p>
+                                </div>
                             </div>
                         </div>
-                        <a href="{{ route('surat-keluars.download', $suratKeluar) }}" class="inline-flex items-center justify-center px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-xs sm:text-sm font-medium w-full sm:w-auto flex-shrink-0">
-                            <svg class="w-4 sm:w-5 h-4 sm:h-5 mr-1 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                            </svg>
-                            <span class="hidden xs:inline">Download</span>
-                        </a>
+                        
+                        <!-- PDF Viewer with Highlight Feature -->
+                        @include('components.pdf-viewer')
                     </div>
                 </div>
             @else

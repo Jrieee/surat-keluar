@@ -12,7 +12,8 @@ class SuratKeluarPolicy
      */
     public function view(User $user, SuratKeluar $suratKeluar): bool
     {
-        return $user->isAdmin() || $user->id === $suratKeluar->user_id;
+        // Semua user yang authenticated bisa view surat
+        return true;
     }
 
     /**

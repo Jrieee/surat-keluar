@@ -57,8 +57,8 @@
             <form method="POST" action="{{ route('login') }}" class="space-y-5">
                 @csrf
 
-                <!-- EMAIL -->
-                <input type="email" name="email" placeholder="Email / Username" required autofocus
+                <!-- USERNAME -->
+                <input type="text" name="username" placeholder="Username" required autofocus
                        class="w-full h-14 px-5 rounded-2xl
                               border border-gray-300
                               text-gray-700 placeholder-gray-400
